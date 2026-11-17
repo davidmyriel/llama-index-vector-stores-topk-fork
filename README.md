@@ -115,6 +115,16 @@ See the [example notebook](docs/TopKDemo.ipynb) for every feature, with runnable
 - A query returns at most 10,000 results.
 - Don't delete and immediately recreate a collection under the same name. For about a minute, writes to it can be lost.
 
+## Development
+
+```bash
+export UV_LINK_MODE=copy  # nltk, used by llama-index-core, refuses hardlinked data files
+uv sync --group dev
+uv run make lint
+uv run make test
+TOPK_API_KEY=... uv run make integration_test  # live tests; they delete only collections they create
+```
+
 ## Links
 
 - TopK: https://topk.io
